@@ -1,4 +1,4 @@
-# A proof of concept for how the Diffie-Hellman Key Exchange Protocol can be broken if a small prime and generator are chosen
+# A proof of concept for how the Diffie-Hellman Key Exchange Protocol can be broken if a small numbers are chosen for the prime, generator, and secret integers. 
 
 
 def check_public(a, A, b, B):
