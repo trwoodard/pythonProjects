@@ -1,6 +1,7 @@
 # A proof of concept for how the Diffie-Hellman Key Exchange Protocol can be broken if a small numbers are chosen for the prime, generator, and secret integers. 
 
 
+# This takes in the secret integer values, a and b, and will calulate public values using the formula g^s mod p.
 def check_public(a, A, b, B):
     check_a = (g ** a) % p
     check_b = (g ** b) % p
@@ -8,6 +9,9 @@ def check_public(a, A, b, B):
         return True
 
 
+# The main component of the script, which iterates through a range of values to guess the secret integers, a and b.
+# In order to guess these values, the script must check that the formula A^b mod p = B^a mod p. 
+# If the following is true, then the script checks if the values for a and b also create the correct public values.
 def find_secrets():
     for i in range(1, 100):
         a = i
@@ -20,6 +24,7 @@ def find_secrets():
                     return a, b
 
 
+# Check whether the shared secret keys are equal.                
 def calc_shared_secret(a, A, b, B):
     K1 = (B**a) % p
     K2 = (A**b) % p
@@ -27,6 +32,7 @@ def calc_shared_secret(a, A, b, B):
         return K1, K2
 
 
+# Print out a solution statement with all the values.     
 def solution_statement(a, b, K1, K2):
     print(f"""
     Here is the solution:
@@ -51,6 +57,7 @@ def solution_statement(a, b, K1, K2):
     """)
 
 
+# Main portion of the script, using the previously-defined functions.    
 def break_dh():
     a, b = find_secrets()
     K1, K2 = calc_shared_secret(a, A, b, B)
